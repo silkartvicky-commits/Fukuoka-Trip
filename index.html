@@ -3,138 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>九州 5天4夜 自由行行程表</title>
+    <title>✨ 九州 5天4夜 自由行行程表 ✨</title>
+    <!-- 引入 Google 字體與 FontAwesome 可愛圖標庫 -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
-            --primary: #34495E;      /* 霽藍主調 */
+            --primary: #34495E;      /* 富士霽藍 */
             --secondary: #5DADE2;    /* 淺天藍 */
-            --accent: #E74C3C;       /* 點綴珊瑚紅 */
-            --bg-light: #F4F6F7;
+            --accent: #FF8D1A;       /* 可愛活力橘 */
+            --bg-light: #F2F4F4;
             --text-dark: #2C3E50;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
         
-        header { background: linear-gradient(135deg, #2C3E50, #566573); color: white; text-align: center; padding: 2.5rem 1rem; }
-        header h1 { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header { background: linear-gradient(135deg, #2C3E50, #566573); color: white; text-align: center; padding: 3rem 1rem; position: relative; }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.6rem; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        header p { font-size: 1.1rem; opacity: 0.95; }
         
         .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
         
-        .nav-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; background: white; padding: 0.5rem; border-radius: 8px; box-shadow: var(--shadow); position: sticky; top: 10px; z-index: 100; }
-        .nav-link { flex: 1; min-width: 80px; text-align: center; padding: 0.75rem 0.5rem; background: #EAEDED; color: var(--primary); text-decoration: none; border-radius: 6px; font-weight: 500; transition: all 0.3s ease; }
-        .nav-link:hover, .nav-link.active { background: var(--primary); color: white; }
+        /* 導覽列 */
+        .nav-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; background: white; padding: 0.6rem; border-radius: 12px; box-shadow: var(--shadow); position: sticky; top: 10px; z-index: 100; }
+        .nav-link { flex: 1; min-width: 85px; text-align: center; padding: 0.75rem 0.5rem; background: #EAEDED; color: var(--primary); text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; font-size: 0.95rem; }
+        .nav-link:hover, .nav-link.active { background: var(--primary); color: white; transform: translateY(-2px); }
 
-        .card { background: white; border-radius: 12px; box-shadow: var(--shadow); padding: 1.5rem; margin-bottom: 2.5rem; border-left: 5px solid var(--primary); scroll-margin-top: 80px; }
-        .card-title { font-size: 1.4rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid #E5E8E8; padding-bottom: 0.5rem; }
+        /* 卡片設計 */
+        .card { background: white; border-radius: 16px; box-shadow: var(--shadow); padding: 1.8rem; margin-bottom: 2.5rem; border-top: 6px solid var(--primary); scroll-margin-top: 80px; position: relative; overflow: hidden; }
+        .card-title { font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 2px dashed #E5E8E8; padding-bottom: 0.6rem; }
 
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-        .info-box { background: #EBF5FB; padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); }
+        .info-box { background: #EBF5FB; padding: 1.2rem; border-radius: 10px; border-left: 4px solid var(--secondary); }
+        .info-box h4 { margin-bottom: 0.4rem; color: #1B4F72; display: flex; align-items: center; gap: 0.4rem; }
 
-        /* 地圖區塊樣式 */
-        .map-section { background: #F8F9F9; border: 1px solid #E5E8E8; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .map-section p { font-size: 0.9rem; color: #7F8C8D; margin-bottom: 0.8rem; }
-        .btn-map { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #1A5276; color: white; text-decoration: none; padding: 0.6rem 1.5rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem; transition: background 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .btn-map:hover { background-color: #2980B9; }
+        /* 地圖導航區塊 */
+        .map-section { background: #F8F9F9; border: 1px dashed #BDC3C7; border-radius: 12px; padding: 1.2rem; margin-bottom: 1.8rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .map-section p { font-size: 0.95rem; color: #5D6D7E; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.4rem; }
+        .btn-map { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #2471A3; color: white; text-decoration: none; padding: 0.65rem 1.8rem; border-radius: 25px; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        .btn-map:hover { background-color: #2E4053; transform: scale(1.03); }
 
-        .timeline { position: relative; padding-left: 1.5rem; }
-        .timeline::before { content: ''; position: absolute; left: 5px; top: 5px; bottom: 5px; width: 2px; background: #BDC3C7; }
-        .timeline-item { position: relative; margin-bottom: 1.5rem; }
-        .timeline-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--secondary); border: 2px solid white; box-shadow: 0 0 0 2px var(--secondary); }
+        /* 時間軸 */
+        .timeline { position: relative; padding-left: 1.8rem; }
+        .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 3px; background: #E5E8E8; }
+        .timeline-item { position: relative; margin-bottom: 1.8rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--secondary); border: 3px solid white; box-shadow: 0 0 0 2px var(--secondary); }
 
-        .time-tag { display: inline-block; background: var(--primary); color: white; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 0.4rem; }
-        .item-content h3 { font-size: 1.15rem; color: #2E4053; margin-bottom: 0.3rem; }
+        .time-tag { display: inline-block; background: var(--primary); color: white; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.85rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .item-content h3 { font-size: 1.2rem; color: #2E4053; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
 
-        .badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-right: 0.3rem; margin-bottom: 0.3rem; }
-        .bg-food { background-color: #EDBB99; color: #78281F; }
-        .bg-spot { background-color: #AED6F1; color: #1B4F72; }
-        .bg-hotel { background-color: #D5D8DC; color: #2C3E50; }
+        /* 可愛小標籤 */
+        .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 500; margin-right: 0.3rem; margin-bottom: 0.3rem; }
+        .bg-food { background-color: #FADBD8; color: #78281F; }
+        .bg-spot { background-color: #D4EFDF; color: #145A32; }
+        .bg-hotel { background-color: #E5E8E8; color: #2C3E50; }
 
-        .notes { font-size: 0.9rem; color: #5D6D7E; margin-top: 0.2rem; background: #FBFCFC; padding: 0.5rem; border-radius: 4px; border-left: 2px solid #BDC3C7; }
-        footer { text-align: center; padding: 2rem; background: var(--primary); color: white; font-size: 0.9rem; margin-top: 3rem; }
+        .notes { font-size: 0.95rem; color: #5D6D7E; margin-top: 0.3rem; background: #FBFCFC; padding: 0.6rem; border-radius: 6px; border-left: 3px solid #BDC3C7; }
+        footer { text-align: center; padding: 2.5rem; background: var(--primary); color: white; font-size: 0.95rem; margin-top: 4rem; }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 1.6rem; }
-            .nav-tabs { top: 5px; padding: 0.3rem; }
-            .nav-link { font-size: 0.8rem; padding: 0.5rem 0.2rem; }
-            .card { padding: 1rem; }
+            header h1 { font-size: 1.7rem; }
+            .nav-tabs { top: 5px; padding: 0.4rem; }
+            .nav-link { font-size: 0.85rem; padding: 0.5rem 0.2rem; }
+            .card { padding: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1><i class="fa-solid fa-plane-departure"></i> 九州五天四夜自由行</h1>
-        <p>5/21 (四) ～ 5/25 (一) ・ 團隊 8 人大團出發</p>
+        <h1><i class="fa-solid fa-jedi"></i> 九州自由行吃貨大冒險 ✨</h1>
+        <p>📅 5/21 (四) ～ 5/25 (一) ・ 歡樂 8 人團出發 🚀</p>
     </header>
 
     <div class="container">
+        <!-- 導覽頁籤 -->
         <div class="nav-tabs">
-            <a href="#traffic" class="nav-link">機場接送</a>
-            <a href="#day1" class="nav-link">Day 1</a>
-            <a href="#day2" class="nav-link">Day 2</a>
-            <a href="#day3" class="nav-link">Day 3</a>
-            <a href="#day4" class="nav-link">Day 4</a>
-            <a href="#day5" class="nav-link">Day 5</a>
+            <a href="#traffic" class="nav-link">🚗 包車資訊</a>
+            <a href="#day1" class="nav-link">🗺️ Day 1</a>
+            <a href="#day2" class="nav-link">🌊 Day 2</a>
+            <a href="#day3" class="nav-link">🌋 Day 3</a>
+            <a href="#day4" class="nav-link">♨️ Day 4</a>
+            <a href="#day5" class="nav-link">🛍️ Day 5</a>
         </div>
 
         <!-- 機場接送 -->
-        <div class="card" id="traffic">
-            <h2 class="card-title"><i class="fa-solid fa-car"></i> 機場包車接送資訊</h2>
+        <div class="card" id="traffic" style="border-top-color: var(--accent);">
+            <h2 class="card-title"><i class="fa-solid fa-van-shuttle"></i> 機場包車接送資訊</h2>
             <div class="info-grid">
                 <div class="info-box">
-                    <h4><i class="fa-solid fa-arrow-right"></i> 去程接送 (5/21 02:00)</h4>
-                    <p>臺中市南區建國北路一段250號 (全家) → 桃機一航廈</p>
+                    <h4><i class="fa-solid fa-plane-departure"></i> 去程出發 (5/21 02:00)</h4>
+                    <p>📍 臺中市南區建國北路一段250號 (全家) → 🛫 桃機一航廈</p>
                 </div>
                 <div class="info-box">
-                    <h4><i class="fa-solid fa-arrow-left"></i> 回程接送 (5/25 18:40)</h4>
-                    <p>桃機一航廈 → 臺中市南區建國北路一段250號</p>
+                    <h4><i class="fa-solid fa-plane-arrival"></i> 回程接機 (5/25 18:40)</h4>
+                    <p>🛫 桃機一航廈 → 📍 溫暖的家 (台中南區全家)</p>
                 </div>
             </div>
         </div>
 
         <!-- DAY 1 -->
         <div class="card" id="day1">
-            <h2 class="card-title"><i class="fa-solid fa-calendar-day"></i> Day 1：5/21 (四) 福岡市區</h2>
+            <h2 class="card-title"><i class="fa-solid fa-city"></i> Day 1：5/21 (四) 福岡市區吃喝漫步</h2>
             <div class="map-section">
-                <p><i class="fa-solid fa-map-location-dot"></i> 今日主要路線：博多車站 → 燒肉大東園 → 東長寺 → 櫛田神社 → 天神地下街</p>
+                <p><i class="fa-solid fa-map-pin"></i> 散步關卡：博多車站 ➔ 燒肉大東園 ➔ 東長寺 ➔ 櫛田神社 ➔ 天神地下街</p>
                 <a href="https://google.com" target="_blank" class="btn-map">
-                    <i class="fa-solid fa-location-arrow"></i> 開啟 Day 1 Google 路線導航
+                    <i class="fa-solid fa-map-location-dot"></i> 打開導航與小夥伴出發 🗺️
                 </a>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="time-tag">上午</span>
+                    <span class="time-tag">上午 ☀️</span>
                     <div class="item-content">
-                        <h3>博多車站 & 伴手禮 (入住 Hulaton 飯店)</h3>
-                        <span class="badge bg-spot">景點</span><span class="badge bg-food">美食</span>
-                        <p class="notes">Press Butter Sand 伴手禮採購。</p>
+                        <h3>博多車站 & 伴手禮採購 🛍️</h3>
+                        <span class="badge bg-spot">景點</span><span class="badge bg-hotel">住宿: Hulaton 飯店</span>
+                        <p class="notes">抵達博多車站，必買超罪惡的 Press Butter Sand 夾心餅乾！</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">11:30 - 14:00</span>
+                    <span class="time-tag">11:30 - 14:00 🥩</span>
                     <div class="item-content">
                         <h3>燒肉大東園 本店</h3>
-                        <span class="badge bg-food">午餐</span>
+                        <span class="badge bg-food">午餐饗宴</span>
+                        <p class="notes">午間限定的燒肉定食，高 CP 值首選！</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">下午</span>
+                    <span class="time-tag">下午 🍵</span>
                     <div class="item-content">
-                        <h3>古蹟巡禮</h3>
-                        <span class="badge bg-spot">景點</span>
-                        <p class="notes">東長寺 → まち吉抹茶 → 博多町家故鄉館 → 櫛田神社（石村萬盛堂本店）。</p>
+                        <h3>歷史古蹟與文青抹茶</h3>
+                        <span class="badge bg-spot">古蹟巡禮</span><span class="badge bg-food">甜點時間</span>
+                        <p class="notes">東長寺拜大佛 ➔ まち吉喝抹茶 ➔ 博多町家故鄉館 ➔ 櫛田神社參拜。別忘了去石村萬盛堂吃超軟綿的鶴乃子糕點！</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">傍晚</span>
+                    <span class="time-tag">傍晚 🛒</span>
                     <div class="item-content">
-                        <h3>天神地下街 & 商圈購物</h3>
-                        <span class="badge bg-spot">購物</span><span class="badge bg-food">點心</span>
-                        <p class="notes">Ringo 蘋果派、BAKE 乾酪塔、Truffle Bakery 白松露麵包。逛 Parco 與 Mina 天神。</p>
+                        <h3>天神地下街瘋狂 Shopping 🛍️</h3>
+                        <span class="badge bg-spot">購物血拼</span><span class="badge bg-food">下午茶點</span>
+                        <p class="notes">邊逛邊吃口袋名單：Ringo 蘋果派、BAKE 乾酪塔、Truffle Bakery 白松露麵包！順路逛 Parco 與 Mina 天神（有超大 Uniqlo 與 Loft）。</p>
                     </div>
                 </div>
             </div>
@@ -142,43 +151,44 @@
 
         <!-- DAY 2 -->
         <div class="card" id="day2">
-            <h2 class="card-title"><i class="fa-solid fa-calendar-day"></i> Day 2：5/22 (五) 糸島海景之旅</h2>
+            <h2 class="card-title"><i class="fa-solid fa-umbrella-beach"></i> Day 2：5/22 (五) 浪漫糸島度假海景</h2>
             <div class="map-section">
-                <p><i class="fa-solid fa-map-location-dot"></i> 今日主要路線：Dacomecca → 箱島神社 → 白絲瀑布 → 立石山 → 二見浦夫妻石 → 華味鳥</p>
+                <p><i class="fa-solid fa-map-pin"></i> 兜風關卡：Dacomecca ➔ 箱島神社 ➔ 白絲瀑布 ➔ 立石山 ➔ 二見浦夫妻石 ➔ 華味鳥</p>
                 <a href="https://google.com" target="_blank" class="btn-map">
-                    <i class="fa-solid fa-location-arrow"></i> 開啟 Day 2 Google 路線導航
+                    <i class="fa-solid fa-map-location-dot"></i> 打開自駕兜風路線 🚗
                 </a>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="time-tag">07:00</span>
+                    <span class="time-tag">07:00 🥐</span>
                     <div class="item-content">
-                        <h3>Dacomecca 麵包店</h3>
-                        <span class="badge bg-food">早餐</span>
+                        <h3>Dacomecca 視覺系麵包店</h3>
+                        <span class="badge bg-food">網美早餐</span>
+                        <p class="notes">炭火現烤、層次豐富的人氣排隊名店，先吃飽再出發！</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">上午</span>
+                    <span class="time-tag">上午 🏞️</span>
                     <div class="item-content">
-                        <h3>箱島神社 & 白糸の滝</h3>
-                        <span class="badge bg-spot">景點</span>
-                        <p class="notes">白絲瀑布流水素麵（600日圓/人）。中午於「白糸の森」野餐。</p>
+                        <h3>海上神社與清涼瀑布</h3>
+                        <span class="badge bg-spot">避暑景點</span>
+                        <p class="notes">絕美海上箱島神社 ➔ 前往白糸の滝（白絲瀑布），體驗好玩又好吃的流水素麵（600日圓/人）。中午在「白糸の森」呼吸芬多精享受野餐 🌲。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">下午</span>
+                    <span class="time-tag">下午 🍦</span>
                     <div class="item-content">
-                        <h3>網美海景漫步</h3>
-                        <span class="badge bg-spot">打卡</span><span class="badge bg-food">點心</span>
-                        <p class="notes">またいちの塩（鹽布丁）→ 立石山眺望 → London Bus Café → 櫻井神社與二見浦夫妻石白色鳥居。</p>
+                        <h3>海風、日落與白色鳥居 ⛩️</h3>
+                        <span class="badge bg-spot">拍照打卡</span><span class="badge bg-food">人氣甜點</span>
+                        <p class="notes">朝聖「またいちの塩」吃手工製鹽布丁 ➔ 立石山看海景 ➔ London Bus Café 拍英倫巴士 ➔ 參拜櫻井神社與著名的二見浦夫妻石。傍晚在 Beach Cafe Sunset 喝咖啡看夕陽，順便去海邊的椰子樹鞦韆拍照 📸。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">晚上</span>
+                    <span class="time-tag">晚上 🍲</span>
                     <div class="item-content">
                         <h3>水炊料亭 華味鳥</h3>
-                        <span class="badge bg-food">晚餐</span>
-                        <p class="notes">回博多市區享用傳統水炊雞肉鍋。</p>
+                        <span class="badge bg-food">道地晚餐</span>
+                        <p class="notes">回博多市區享用極致濃郁、膠原蛋白滿滿的傳統水炊雞肉鍋。</p>
                     </div>
                 </div>
             </div>
@@ -186,44 +196,52 @@
 
         <!-- DAY 3 -->
         <div class="card" id="day3">
-            <h2 class="card-title"><i class="fa-solid fa-calendar-day"></i> Day 3：5/23 (六) 阿蘇火山壯麗絕景</h2>
+            <h2 class="card-title"><i class="fa-solid fa-volcano"></i> Day 3：5/23 (六) 阿蘇火山與神秘神社</h2>
             <div class="map-section">
-                <p><i class="fa-solid fa-map-location-dot"></i> 今日主要路線：大觀峰 → 阿蘇神社 → 米塚 → 草千里 → 阿蘇中岳火山口 → 上色見熊野座神社</p>
+                <p><i class="fa-solid fa-map-pin"></i> 冒險關卡：大觀峰 ➔ 阿蘇神社 ➔ 米塚 ➔ 草千里 ➔ 阿蘇中岳火山口 ➔ 上色見熊野座神社</p>
                 <a href="https://google.com" target="_blank" class="btn-map">
-                    <i class="fa-solid fa-location-arrow"></i> 開啟 Day 3 Google 路線導航
+                    <i class="fa-solid fa-map-location-dot"></i> 打開大自然大冒險地圖 🌋
                 </a>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="time-tag">上午</span>
+                    <span class="time-tag">上午 🏔️</span>
                     <div class="item-content">
-                        <h3>大觀峰 & 阿蘇神社</h3>
-                        <span class="badge bg-spot">絕景</span>
-                        <p class="notes">吃 Miumilk 牛乳霜淇淋，經米塚前往阿蘇神社與商店街。</p>
+                        <h3>大觀峰巨作 & 濃郁牛乳霜淇淋</h3>
+                        <span class="badge bg-spot">絕景必去</span><span class="badge bg-food">限定甜點</span>
+                        <p class="notes">眺望整座阿蘇五岳！順路去 Miumilk 買限定阿蘇小國澤西牛乳霜淇淋、可麗餅跟冰涼檸檬汽水 🥛。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">中午</span>
+                    <span class="time-tag">中午 🍃</span>
                     <div class="item-content">
-                        <h3>草千里之濱</h3>
-                        <span class="badge bg-food">午餐</span>
-                        <p class="notes">草千里咖啡焙煎所喝現烘咖啡，參觀火山博物館。</p>
+                        <h3>阿蘇神社與可愛抹茶布丁山「米塚」</h3>
+                        <span class="badge bg-spot">景點漫步</span>
+                        <p class="notes">逛逛古老阿蘇神社與熱鬧的門前町商店街，沿途順便捕獲圓滾滾的米塚山！</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">下午</span>
+                    <span class="time-tag">13:00 ☕</span>
                     <div class="item-content">
-                        <h3>中岳火山口 & 上色見熊野座神社</h3>
-                        <span class="badge bg-spot">巨作</span>
-                        <p class="notes">親臨活火山口（視開放狀況），下山參拜神秘的上色見熊野座神社，順遊白川水源。</p>
+                        <h3>草千里之濱大草原</h3>
+                        <span class="badge bg-food">午餐</span><span class="badge bg-spot">景點</span>
+                        <p class="notes">在無邊際草原走走，強烈推薦去網美勝地「草千里咖啡焙煎所」喝杯現烘手沖咖啡，再參觀火山博物館。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">晚上</span>
+                    <span class="time-tag">下午 ⛩️</span>
                     <div class="item-content">
-                        <h3>入住 由布院 Assi House</h3>
-                        <span class="badge bg-hotel">住宿</span>
-                        <p class="notes">包棟溫泉別墅度假放鬆。</p>
+                        <h3>中岳火山口與神秘動漫神社</h3>
+                        <span class="badge bg-spot">此生必去</span>
+                        <p class="notes">直奔中岳火山口看冒煙奇景（視當天開放狀況）。接著前往《螢火之森》般的奇幻世界——上色見熊野座神社，走在青苔石燈籠參道像走進畫裡。途中順遊白川水源取水 💧。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time-tag">晚上 ♨️</span>
+                    <div class="item-content">
+                        <h3>入住由布院 Assi House 包棟溫泉別墅</h3>
+                        <span class="badge bg-hotel">奢華包棟</span>
+                        <p class="notes">開車抵達溫泉鄉，今晚整棟別墅都是我們的！泡個熱呼呼的溫泉洗去全身疲憊。</p>
                     </div>
                 </div>
             </div>
@@ -231,43 +249,44 @@
 
         <!-- DAY 4 -->
         <div class="card" id="day4">
-            <h2 class="card-title"><i class="fa-solid fa-calendar-day"></i> Day 4：5/24 (日) 由布院童話小鎮</h2>
+            <h2 class="card-title"><i class="fa-solid fa-hot-tub-person"></i> Day 4：5/24 (日) 由布院童話世界 & 屋台夜生活</h2>
             <div class="map-section">
-                <p><i class="fa-solid fa-map-location-dot"></i> 今日主要路線：金鱗湖 → 湯之坪街道 → 由布釜飯心 → 狹霧台 → 博多運河城 → 中洲屋台</p>
+                <p><i class="fa-solid fa-map-pin"></i> 漫遊關卡：金鱗湖 ➔ 湯之坪街道 ➔ 由布釜飯心 ➔ 狹霧台 ➔ 博多運河城 ➔ 中洲屋台</p>
                 <a href="https://google.com" target="_blank" class="btn-map">
-                    <i class="fa-solid fa-location-arrow"></i> 開啟 Day 4 Google 路線導航
+                    <i class="fa-solid fa-map-location-dot"></i> 打開童話小鎮旅行路線 🦆
                 </a>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="time-tag">早上</span>
+                    <span class="time-tag">清晨 🥞</span>
                     <div class="item-content">
-                        <h3>金鱗湖清晨 & Cafe La Ruche</h3>
-                        <span class="badge bg-food">早餐</span>
+                        <h3>金鱗湖夢幻晨霧</h3>
+                        <span class="badge bg-food">湖景早餐</span>
+                        <p class="notes">欣賞煙霧繚繞的金鱗湖，在湖畔第一排的 Cafe La Ruche 戶外座享受悠閒早餐與新鮮麵包。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">白天</span>
+                    <span class="time-tag">白天 🏡</span>
                     <div class="item-content">
-                        <h3>湯の坪街道 主題街</h3>
-                        <span class="badge bg-spot">逛街</span><span class="badge bg-food">美食</span>
-                        <p class="notes">逛花卉村、Miffy、Snoopy等店。必吃炭烤厚香菇、中津炸雞、金賞可樂餅。午餐吃「由布釜飯心」豐後牛釜飯。</p>
+                        <h3>湯の坪街道童話商店街巡禮</h3>
+                        <span class="badge bg-spot">街頭漫步</span><span class="badge bg-food">美食吃不停</span>
+                        <p class="notes">逛花卉村、Miffy、Snoopy 專賣店！街頭必吃：炭烤厚香菇（奶油醬油/起司口味）、中津炸雞、金賞可樂餅。午餐排隊吃大名鼎鼎的「由布釜飯心」豐後牛釜飯三吃 🍱。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">下午</span>
+                    <span class="time-tag">下午 🍰</span>
                     <div class="item-content">
-                        <h3>神級甜點巡禮 & 返回博多</h3>
-                        <span class="badge bg-food">甜點</span>
-                        <p class="notes">B-Speak 生乳捲、Milch 半熟乾酪蛋糕。經狹霧台展望台俯瞰盆地，開車回博多。</p>
+                        <h3>神級甜點大外帶 & 告別由布院</h3>
+                        <span class="badge bg-food">散策點心</span>
+                        <p class="notes">外帶 B-Speak 生乳捲、Milch 熱半熟乾酪蛋糕。回程行經狹霧台展望台拍張由布院全景，隨後開車返回博多市區。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">晚上</span>
+                    <span class="time-tag">晚上 🍜</span>
                     <div class="item-content">
-                        <h3>博多運河城 & 中洲屋台橫丁</h3>
-                        <span class="badge bg-food">夜生活</span>
-                        <p class="notes">運河城看水舞，深夜去中洲屋台體驗福岡特色路邊攤文化。</p>
+                        <h3>博多運河城與中洲屋台體驗</h3>
+                        <span class="badge bg-spot">夜景購物</span><span class="badge bg-food">在地夜生活</span>
+                        <p class="notes">運河城逛街兼看炫目水舞，深夜直奔中洲屋台街，擠在特色路邊攤裡吃串燒、拉麵和喝生啤酒 🍺！</p>
                     </div>
                 </div>
             </div>
@@ -275,36 +294,36 @@
 
         <!-- DAY 5 -->
         <div class="card" id="day5">
-            <h2 class="card-title"><i class="fa-solid fa-calendar-day"></i> Day 5：5/25 (一) 歡樂返國</h2>
+            <h2 class="card-title"><i class="fa-solid fa-gift"></i> Day 5：5/25 (一) 萌系彩蛋與最後衝刺</h2>
             <div class="map-section">
-                <p><i class="fa-solid fa-map-location-dot"></i> 今日主要路線：Tanya博多 → 麵包超人兒童博物館 → 福岡機場免稅店</p>
+                <p><i class="fa-solid fa-map-pin"></i> 收尾關卡：Tanya博多 ➔ 麵包超人兒童博物館 ➔ 福岡機場</p>
                 <a href="https://google.com" target="_blank" class="btn-map">
-                    <i class="fa-solid fa-location-arrow"></i> 開啟 Day 5 Google 路線導航
+                    <i class="fa-solid fa-map-location-dot"></i> 前往機場最後衝刺地圖 ✈️
                 </a>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="time-tag">07:00</span>
+                    <span class="time-tag">07:00 🥩</span>
                     <div class="item-content">
-                        <h3>Tanya 博多</h3>
-                        <span class="badge bg-food">早餐</span>
-                        <p class="notes">博多車站超人氣炭烤牛舌朝食定食。</p>
+                        <h3>Tanya 博多 炭烤牛舌朝食</h3>
+                        <span class="badge bg-food">必吃早餐</span>
+                        <p class="notes">車站地下街傳奇！大清早吃香氣噴發的炭烤牛舌配生雞蛋拌飯，幸福感爆表。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">10:00</span>
+                    <span class="time-tag">10:00 🎈</span>
                     <div class="item-content">
                         <h3>福岡麵包超人兒童博物館</h3>
-                        <span class="badge bg-spot">童趣</span>
-                        <p class="notes">門票 2,200 日圓，購買超萌限定伴手禮與拍照。</p>
+                        <span class="badge bg-spot">童趣爆棚</span>
+                        <p class="notes">門票 2,200 日圓，滿滿的超萌拍照場景與限定精緻麵包超人周邊，融化你的少女心！</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <span class="time-tag">下午</span>
+                    <span class="time-tag">下午 🛫</span>
                     <div class="item-content">
-                        <h3>福岡機場免稅店 Shopping → 返台</h3>
-                        <span class="badge bg-spot">機場</span>
-                        <p class="notes">搭乘虎航 IT721（17:10 起飛）回桃園機場。</p>
+                        <h3>機場免稅店最後大補貨 ➔ 台灣</h3>
+                        <span class="badge bg-spot">回家囉</span>
+                        <p class="notes">提早到福岡機場辦登機，把免稅店裡的福砂屋、一蘭拉麵、明太子、藥妝全部掃進免稅袋！搭乘虎航 IT721（17:10 起飛）回溫暖的家。</p>
                     </div>
                 </div>
             </div>
@@ -312,7 +331,7 @@
     </div>
 
     <footer>
-        <p>© 2026 九州自由行團隊行程表 ｜ 祝大家旅途愉快！</p>
+        <p>❤️ 2026 九州吃貨自由行團隊專屬網頁 ｜ 祝大家裝滿肚子、買到手軟、旅途愉快！ ❤️</p>
     </footer>
 
     <script>
